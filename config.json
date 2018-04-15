@@ -1,0 +1,8 @@
+{
+  "dataset": "yahoo-withcount.txt.bz2",
+  "model_dir": "trained_model",
+  "data_dir": "data",
+  "model": "checkpoint_layer_3_hidden_640_epoch_1000_dataset_decoys.hdf5",
+  "epoch_interval": 10,
+  "gpu_mem_fraction": 0.85
+}
