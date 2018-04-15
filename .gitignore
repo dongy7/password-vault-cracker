@@ -4,4 +4,4 @@ __pycache__/
 *$py.class
 
 trained_model/
-data/
+foo/
