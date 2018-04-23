@@ -33,8 +33,8 @@ from vault_utils import *
 # data = 'rockyou'
 data = 'decoys'
 basedir = os.path.dirname(os.path.abspath(__file__))
-dataset = data + '-training.txt.bz2'
-num = '03'
+dataset = data + '_withcount.txt.bz2'
+num = '10'
 loss = '0.3978'
 val_loss = '1.5480'
 

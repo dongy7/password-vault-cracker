@@ -6,16 +6,14 @@ from RNN_utils import pw_loss_calc
 
 def construct_decoy_set(vsize, decoys, size):
     random.shuffle(decoys)
-    # return [decoy[:vsize] for decoy in decoys[:size]]
-    return [decoy[:50] for decoy in decoys[:size]]
-
+    return [[pw for pw in decoy if len(pw) > 0][:vsize] for decoy in decoys[:size]]
 
 def get_vaults(path, vsize):
     vaults = []
     i = 0
 
     vault = []
-    with open(dv_path, 'r') as f:
+    with open(path, 'r') as f:
         for line in f:
             i += 1
             pw = line.strip()
@@ -66,6 +64,8 @@ def get_dist(vault, real=False, model=None):
 
     if model:
         for pw in dist:
+            if len(pw) == 0:
+                raise Exception
             dist[pw]['score'] = pw_loss_calc(model['model'], model['SEQ_LENGTH'], model['VOCAB_SIZE'], model['i2c'], model['c2i'], pw)
 
     dist['___+ToTaL+___'] = {}
@@ -90,7 +90,7 @@ def eval_KL(model=None):
 
     print('reading password vaults')
     vaults = sorted(
-        [val for _, val in vault.items()], key=lambda x: len(x), reverse=True)
+        [[pw for pw in val if len(pw) > 0] for _, val in vault.items()], key=lambda x: len(x), reverse=True)
 
     groups = ['2-3', '4-8', '9-50']
     vault_groups = {}
@@ -123,11 +123,13 @@ def eval_KL(model=None):
     pw_dist = get_pw_dist('data/rockyou-withcount.txt')
 
     # print(d_vaults[0])
-    print('Average rank')
     for g in vault_groups:
         ranks = []
+        j = 0
         for dist in vault_groups[g]['dists']:
-            decoys = construct_decoy_set(len(dist) - 1, d_vaults, 999)
+            j += 1
+            print('Vault ' + str(j) + '/' + str(len(vault_groups[g]['dists'])))
+            decoys = construct_decoy_set(len(dist) - 2, d_vaults, 999)
             decoy_dists = [get_dist(v, False, model) for v in decoys]
             test_set = [dist] + decoy_dists
             for cv in test_set:
@@ -135,7 +137,9 @@ def eval_KL(model=None):
 
             sorted_set = sorted(
                 test_set, key=lambda x: x['___score___'], reverse=True)
-            ranks.append(rank(sorted_set))
+            v_rank = rank(sorted_set)
+            print("Rank: " + str(v_rank))
+            ranks.append(v_rank)
 
         avg = sum(ranks) / len(ranks) / 1000 * 100
-        print(g + ': ' + str(round(avg, 2)) + '%')
+        print('Average rank for ' + g + ': ' + str(round(avg, 2)) + '%')
