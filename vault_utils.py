@@ -83,7 +83,8 @@ def rank(test_set):
             return i
         i += 1
 
-def eval_KL(model=None):
+def eval_KL(group='2-3', model=None):
+    print('Ranking vaults of size: ' + group)
     vpath = 'data/vault.json'
 
     with open(vpath, 'r') as f:
@@ -93,25 +94,29 @@ def eval_KL(model=None):
     vaults = sorted(
         [[pw for pw in val if len(pw) > 0] for _, val in vault.items()], key=lambda x: len(x), reverse=True)
 
-    groups = ['2-3', '4-8', '9-50']
-    vault_groups = {}
+    # groups = ['2-3', '4-8', '9-50']
+    # vault_groups = {}
+    #     vault_groups[g]['vaults'] = []
+    #     vault_groups[g]['dists'] = []
 
-    for g in groups:
-        vault_groups[g] = {}
-        vault_groups[g]['vaults'] = []
-        vault_groups[g]['dists'] = []
+    dists = []
+    lo, hi = [int(x) for x in group.split('-')]
 
     for vault in vaults:
-        if len(vault) < 2:
-            continue
-        elif len(vault) <= 3:
-            group = '2-3'
-        elif len(vault) <= 8:
-            group = '4-8'
-        else:
-            group = '9-50'
-        vault_groups[group]['vaults'].append(vault)
-        vault_groups[group]['dists'].append(get_dist(vault, True, model))
+        if len(vault) >= lo and len(vault) <= hi:
+            vaults.append(vault)
+            dists.append(get_dist(vault, True, model))
+
+        # if len(vault) < 2:
+        #     continue
+        # elif len(vault) <= 3:
+        #     group = '2-3'
+        # elif len(vault) <= 8:
+        #     group = '4-8'
+        # else:
+        #     group = '9-50'
+        # vault_groups[group]['vaults'].append(vault)
+        # vault_groups[group]['dists'].append(get_dist(vault, True, model))
 
     # for v in vaults:
     #     print(v)
@@ -124,25 +129,25 @@ def eval_KL(model=None):
     # pw_dist = get_pw_dist('data/rockyou-withcount.txt')
     pw_dist = get_pw_dist('data/decoys_withcount.txt')
 
+    j = 0
+    ranks = []
     # print(d_vaults[0])
-    for g in vault_groups:
-        ranks = []
-        j = 0
-        for dist in vault_groups[g]['dists']:
-            j += 1
-            print('Vault ' + str(j) + '/' + str(len(vault_groups[g]['dists'])))
-            decoys = construct_decoy_set(len(dist) - 2, d_vaults, 999)
-            # print(decoys)
-            decoy_dists = [get_dist(v, False, model) for v in decoys]
-            test_set = [dist] + decoy_dists
-            for cv in test_set:
-                cv['___score___'] = calculate_divergence(cv, pw_dist)
+    print(len(dists))
+    for dist in dists:
+        j += 1
+        print('Vault ' + str(j) + '/' + str(len(dists)))
+        decoys = construct_decoy_set(len(dist) - 2, d_vaults, 999)
+        # print(decoys)
+        decoy_dists = [get_dist(v, False, model) for v in decoys]
+        test_set = [dist] + decoy_dists
+        for cv in test_set:
+            cv['___score___'] = calculate_divergence(cv, pw_dist)
 
-            sorted_set = sorted(
-                test_set, key=lambda x: x['___score___'], reverse=True)
-            v_rank = rank(sorted_set)
-            print("Rank: " + str(v_rank))
-            ranks.append(v_rank)
+        sorted_set = sorted(
+            test_set, key=lambda x: x['___score___'], reverse=True)
+        v_rank = rank(sorted_set)
+        print("Rank: " + str(v_rank))
+        ranks.append(v_rank)
 
-        avg = sum(ranks) / len(ranks) / 1000 * 100
-        print('Average rank for ' + g + ': ' + str(round(avg, 2)) + '%')
+    avg = sum(ranks) / len(ranks) / 1000 * 100
+    print('Average rank for ' + g + ': ' + str(round(avg, 2)) + '%')

@@ -49,6 +49,7 @@ ap.add_argument('-hidden_dim', type=int, default=320)
 ap.add_argument('-generate_length', type=int, default=20)
 ap.add_argument('-nb_epoch', type=int, default=40)
 ap.add_argument('-mode', default='')
+ap.add_argument('-group', default='2-3')
 args = vars(ap.parse_args())
 # default='' means generation; default='train' means training
 # if you don't want to load previously trained model,
@@ -68,6 +69,7 @@ SEQ_LENGTH = args['seq_length']
 WEIGHTS = args['weights']
 GENERATE_LENGTH = args['generate_length']
 LAYER_NUM = args['layer_num']
+group_size = args['group']
 
 # this flag is used in load_data(), as some parts of load_data()
 # is time-consuming and is only necessary in training mode
@@ -143,7 +145,7 @@ elif args['mode'] == 'eval':
         'i2c': i2c,
         'c2i': c2i
     }
-    eval_KL(params)
+    eval_KL(group_size, params)
 
 # Else, performing generation
 else:
