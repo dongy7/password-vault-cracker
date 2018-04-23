@@ -7,6 +7,7 @@ from RNN_utils import pw_loss_calc
 def construct_decoy_set(vsize, decoys, size):
     random.shuffle(decoys)
     return [[pw for pw in decoy if len(pw) > 0][:vsize] for decoy in decoys[:size]]
+    # return [vault[:vsize] for vault in decoys[:size]]
 
 def get_vaults(path, vsize):
     vaults = []
@@ -120,7 +121,8 @@ def eval_KL(model=None):
     d_vaults = get_vaults(dv_path, 50)
 
     print('constructing probability distribution of decoys')
-    pw_dist = get_pw_dist('data/rockyou-withcount.txt')
+    # pw_dist = get_pw_dist('data/rockyou-withcount.txt')
+    pw_dist = get_pw_dist('data/decoys_withcount.txt')
 
     # print(d_vaults[0])
     for g in vault_groups:
@@ -130,6 +132,7 @@ def eval_KL(model=None):
             j += 1
             print('Vault ' + str(j) + '/' + str(len(vault_groups[g]['dists'])))
             decoys = construct_decoy_set(len(dist) - 2, d_vaults, 999)
+            # print(decoys)
             decoy_dists = [get_dist(v, False, model) for v in decoys]
             test_set = [dist] + decoy_dists
             for cv in test_set:
