@@ -14,7 +14,10 @@ with open(input, 'r') as f:
             continue
         counts[password] += 1
 
-sorted_counts = sorted([(pw, count) for (pw, count) in counts.items()], key=lambda x: x[1], reverse=True)
+sorted_counts = sorted(
+    [(pw, count) for (pw, count) in counts.items()],
+    key=lambda x: x[1],
+    reverse=True)
 
 with open(output, 'w') as f:
     for (pw, count) in sorted_counts:

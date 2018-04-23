@@ -3,10 +3,12 @@ import random
 import re
 from kullback_leibler import calculate_divergence
 
+
 def construct_decoy_set(vsize, decoys, size):
     random.shuffle(decoys)
     # return [decoy[:vsize] for decoy in decoys[:size]]
     return [decoy[:50] for decoy in decoys[:size]]
+
 
 def get_vaults(path, vsize):
     vaults = []
@@ -24,6 +26,7 @@ def get_vaults(path, vsize):
                 vault = []
 
     return vaults
+
 
 def get_pw_dist(pw_file):
     r = re.compile('\s+(\d+)\s([^\\n]+)')
@@ -67,6 +70,7 @@ def get_dist(vault, real=False):
 
     return dist
 
+
 def rank(test_set):
     i = 0
     for cv in test_set:
@@ -74,13 +78,15 @@ def rank(test_set):
             return i
         i += 1
 
+
 vpath = 'data/vault.json'
 
 with open(vpath, 'r') as f:
     vault = json.load(f)
 
 print('reading password vaults')
-vaults = sorted([val for _, val in vault.items()], key=lambda x: len(x), reverse=True)
+vaults = sorted(
+    [val for _, val in vault.items()], key=lambda x: len(x), reverse=True)
 
 groups = ['2-3', '4-8', '9-50']
 vault_groups = {}
@@ -109,23 +115,22 @@ print('constructing decoy vaults')
 dv_path = 'data/decoy_vaults.txt'
 d_vaults = get_vaults(dv_path, 50)
 
-
 print('constructing probability distribution of decoys')
 pw_dist = get_pw_dist('data/rockyou-withcount.txt')
-
 
 # print(d_vaults[0])
 print('Average rank')
 for g in vault_groups:
     ranks = []
     for dist in vault_groups[g]['dists']:
-        decoys = construct_decoy_set(len(dist)-1, d_vaults, 999)
+        decoys = construct_decoy_set(len(dist) - 1, d_vaults, 999)
         decoy_dists = [get_dist(v) for v in decoys]
         test_set = [dist] + decoy_dists
         for cv in test_set:
             cv['___score___'] = calculate_divergence(cv, pw_dist)
 
-        sorted_set = sorted(test_set, key=lambda x: x['___score___'], reverse=True)
+        sorted_set = sorted(
+            test_set, key=lambda x: x['___score___'], reverse=True)
         ranks.append(rank(sorted_set))
 
     avg = sum(ranks) / len(ranks) / 1000 * 100
