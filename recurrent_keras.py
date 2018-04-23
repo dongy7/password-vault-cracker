@@ -4,7 +4,8 @@ import numpy as np
 import time
 from datetime import datetime
 import csv,os,sys
-
+import json
+import random
 
 # on multi-GPU server, tensorflow trends to using all available GPUs
 # so we need to limit the number of GPU that it can use
@@ -29,12 +30,18 @@ from keras.layers.wrappers import TimeDistributed
 import argparse
 from RNN_utils import *
 from keras.callbacks import ModelCheckpoint,History
+from vault_utils import *
 
 
 # Parsing arguments for Network definition
 data = 'rockyou'
+# data = 'decoys'
 basedir = os.path.dirname(os.path.abspath(__file__))
 dataset = data + '-training.txt.bz2'
+num = '03'
+loss = '0.5601'
+val_loss = '0.9915'
+
 ap = argparse.ArgumentParser()
 ap.add_argument('-data_dir', default= basedir + '/data/'+ dataset)
 ap.add_argument('-batch_size', type=int, default=64)
@@ -50,7 +57,7 @@ args = vars(ap.parse_args())
 # remember delete the ending letters ".hdf5"
 ap.add_argument('-weights', default= basedir + '/trained_model/history1/' + data +
             '_L_' + str(args['layer_num']) + '_H_'+ str(args['hidden_dim']) +
-            '_epoch_03_loss_0.5598_val_loss_0.9933' + '.')
+            '_epoch_' + num + '_loss_' + loss + '_val_loss_' + val_loss + '.hdf5')
 
 args = vars(ap.parse_args())
 

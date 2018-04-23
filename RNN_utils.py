@@ -157,7 +157,8 @@ def test_pw(model, SEQ_LENGTH, VOCAB_SIZE, i2c, c2i):
         f = open('data/decoy.txt','r')
     else:
         # test real
-        f = bz2.open('data/rockyou-withcount.txt.bz2','r')
+        f = bz2.open('data/decoys-test.txt.bz2','r')
+        # f = bz2.open('data/rockyou-test.txt.bz2','r')
 
     loss_total = []
     for n, line in enumerate(f):
