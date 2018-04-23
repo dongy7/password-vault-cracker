@@ -59,7 +59,10 @@ def calculate_divergence(p0, p1):
 
             # consider number of occurences
             for i in range(0, int(p0[password]["occ"])):
-                sum = sum + factor * math.log(division, 2)
+                if 'score' in p0[password]:
+                    sum = sum + factor * math.log(division, 2) * p0[password]['score']
+                else:
+                    sum = sum + factor * math.log(division, 2)
 
             ####DEBUG#####
             #print "password: "+str(password)

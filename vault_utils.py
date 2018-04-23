@@ -2,7 +2,7 @@ import json
 import random
 import re
 from kullback_leibler import calculate_divergence
-
+from RNN_utils import pw_loss_calc
 
 def construct_decoy_set(vsize, decoys, size):
     random.shuffle(decoys)
@@ -51,7 +51,7 @@ def get_pw_dist(pw_file):
     return dist
 
 
-def get_dist(vault, real=False):
+def get_dist(vault, real=False, model=None):
     dist = {}
     for pw in vault:
         if pw not in dist:
@@ -63,6 +63,10 @@ def get_dist(vault, real=False):
 
     for pw in dist:
         dist[pw]['prob'] = dist[pw]['occ'] / len(vault)
+
+    if model:
+        for pw in dist:
+            dist[pw]['score'] = pw_loss_calc(model['model'], model['SEQ_LENGTH'], model['VOCAB_SIZE'], model['i2c'], model['c2i'], pw)
 
     dist['___+ToTaL+___'] = {}
     dist['___+ToTaL+___']["sum"] = len(vault)
@@ -78,60 +82,60 @@ def rank(test_set):
             return i
         i += 1
 
+def eval_KL(model=None):
+    vpath = 'data/vault.json'
 
-vpath = 'data/vault.json'
+    with open(vpath, 'r') as f:
+        vault = json.load(f)
 
-with open(vpath, 'r') as f:
-    vault = json.load(f)
+    print('reading password vaults')
+    vaults = sorted(
+        [val for _, val in vault.items()], key=lambda x: len(x), reverse=True)
 
-print('reading password vaults')
-vaults = sorted(
-    [val for _, val in vault.items()], key=lambda x: len(x), reverse=True)
+    groups = ['2-3', '4-8', '9-50']
+    vault_groups = {}
 
-groups = ['2-3', '4-8', '9-50']
-vault_groups = {}
+    for g in groups:
+        vault_groups[g] = {}
+        vault_groups[g]['vaults'] = []
+        vault_groups[g]['dists'] = []
 
-for g in groups:
-    vault_groups[g] = {}
-    vault_groups[g]['vaults'] = []
-    vault_groups[g]['dists'] = []
+    for vault in vaults:
+        if len(vault) < 2:
+            continue
+        elif len(vault) <= 3:
+            group = '2-3'
+        elif len(vault) <= 8:
+            group = '4-8'
+        else:
+            group = '9-50'
+        vault_groups[group]['vaults'].append(vault)
+        vault_groups[group]['dists'].append(get_dist(vault, True, model))
 
-for vault in vaults:
-    if len(vault) < 2:
-        continue
-    elif len(vault) <= 3:
-        group = '2-3'
-    elif len(vault) <= 8:
-        group = '4-8'
-    else:
-        group = '9-50'
-    vault_groups[group]['vaults'].append(vault)
-    vault_groups[group]['dists'].append(get_dist(vault, True))
+    # for v in vaults:
+    #     print(v)
 
-# for v in vaults:
-#     print(v)
+    print('constructing decoy vaults')
+    dv_path = 'data/decoy_vaults.txt'
+    d_vaults = get_vaults(dv_path, 50)
 
-print('constructing decoy vaults')
-dv_path = 'data/decoy_vaults.txt'
-d_vaults = get_vaults(dv_path, 50)
+    print('constructing probability distribution of decoys')
+    pw_dist = get_pw_dist('data/rockyou-withcount.txt')
 
-print('constructing probability distribution of decoys')
-pw_dist = get_pw_dist('data/rockyou-withcount.txt')
+    # print(d_vaults[0])
+    print('Average rank')
+    for g in vault_groups:
+        ranks = []
+        for dist in vault_groups[g]['dists']:
+            decoys = construct_decoy_set(len(dist) - 1, d_vaults, 999)
+            decoy_dists = [get_dist(v, False, model) for v in decoys]
+            test_set = [dist] + decoy_dists
+            for cv in test_set:
+                cv['___score___'] = calculate_divergence(cv, pw_dist)
 
-# print(d_vaults[0])
-print('Average rank')
-for g in vault_groups:
-    ranks = []
-    for dist in vault_groups[g]['dists']:
-        decoys = construct_decoy_set(len(dist) - 1, d_vaults, 999)
-        decoy_dists = [get_dist(v) for v in decoys]
-        test_set = [dist] + decoy_dists
-        for cv in test_set:
-            cv['___score___'] = calculate_divergence(cv, pw_dist)
+            sorted_set = sorted(
+                test_set, key=lambda x: x['___score___'], reverse=True)
+            ranks.append(rank(sorted_set))
 
-        sorted_set = sorted(
-            test_set, key=lambda x: x['___score___'], reverse=True)
-        ranks.append(rank(sorted_set))
-
-    avg = sum(ranks) / len(ranks) / 1000 * 100
-    print(g + ': ' + str(round(avg, 2)) + '%')
+        avg = sum(ranks) / len(ranks) / 1000 * 100
+        print(g + ': ' + str(round(avg, 2)) + '%')

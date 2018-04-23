@@ -30,13 +30,15 @@ from keras.callbacks import ModelCheckpoint, History
 from vault_utils import *
 
 # Parsing arguments for Network definition
-data = 'rockyou'
-# data = 'decoys'
+# data = 'rockyou'
+data = 'decoys'
 basedir = os.path.dirname(os.path.abspath(__file__))
 dataset = data + '-training.txt.bz2'
 num = '03'
-loss = '0.5601'
-val_loss = '0.9915'
+loss = '0.3978'
+val_loss = '1.5480'
+
+# decoys_L_3_H_320_epoch_10_loss_0.3978_val_loss_1.5480.hdf5
 
 ap = argparse.ArgumentParser()
 ap.add_argument('-data_dir', default=basedir + '/data/' + dataset)
@@ -130,6 +132,18 @@ if args['mode'] == 'train':
         verbose=1,
         nb_epoch=20,
         callbacks=[checkpointer])
+elif args['mode'] == 'eval':
+    from vault_utils import eval_KL
+    print('evaluating KL divergence score')
+    params = {
+        'model': model,
+        'SEQ_LENGTH': SEQ_LENGTH,
+        'GENERATE_LENGTH': GENERATE_LENGTH,
+        'VOCAB_SIZE': VOCAB_SIZE,
+        'i2c': i2c,
+        'c2i': c2i
+    }
+    eval_KL(params)
 
 # Else, performing generation
 else:
