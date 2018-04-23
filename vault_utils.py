@@ -104,7 +104,6 @@ def eval_KL(group='2-3', model=None):
 
     for vault in vaults:
         if len(vault) >= lo and len(vault) <= hi:
-            vaults.append(vault)
             dists.append(get_dist(vault, True, model))
 
         # if len(vault) < 2:
