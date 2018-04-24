@@ -90,6 +90,7 @@ def get_dist(vault, real=False, model=None, scores=None):
         for pw in dist:
             if len(pw) == 0:
                 raise Exception
+            # use precomputed score if available in dictionary
             if scores and pw in scores:
                 dist[pw]['score'] = scores[pw]
             else:
@@ -119,16 +120,17 @@ decoy: True if using decoy trained model
 ranks the password vaults in a set of 1000 vaults
 """
 def eval_KL(group='2-3', model=None, decoy=True):
-    # reading vault data
     print('Ranking vaults of size: ' + group)
 
     out_file = 'results/group_{}.json'.format(group)
     vpath = 'data/vault.json'
     score_src = 'data/decoy_scores.json' if decoy else 'data/real_scores.json'
 
+    # reading vault data
     with open(vpath, 'r') as f:
         vault = json.load(f)
 
+    # reading precomputed password scores
     with open(score_src, 'r') as f:
         scores = json.load(f)
 
