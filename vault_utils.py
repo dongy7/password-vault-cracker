@@ -70,10 +70,10 @@ def get_pw_dist(pw_file):
 """
 vault: list of passwords in vault
 real: True if vault is not a decoy vault
-model: model parameters if using loss for KL divergence
+combine: True if both real and decoy models should be evaulated and combined
 returns a dictionary containing the probability and occurence for each pw in vault
 """
-def get_dist(vault, real=False, model=None, scores=None):
+def get_dist(vault, real=False, decoy_model=True, decoy_scores=None, real_scores=None, combine=False):
     dist = {}
     for pw in vault:
         if pw not in dist:
@@ -86,15 +86,18 @@ def get_dist(vault, real=False, model=None, scores=None):
     for pw in dist:
         dist[pw]['prob'] = dist[pw]['occ'] / len(vault)
 
-    if model:
-        for pw in dist:
-            if len(pw) == 0:
-                raise Exception
-            # use precomputed score if available in dictionary
-            if scores and pw in scores:
-                dist[pw]['score'] = scores[pw]
-            else:
-                dist[pw]['score'] = pw_loss_calc(model['model'], model['SEQ_LENGTH'], model['VOCAB_SIZE'], model['i2c'], model['c2i'], pw)
+    for pw in dist:
+        if len(pw) == 0:
+            raise Exception
+        # use precomputed score in dictionary
+        if combine:
+            dist[pw]['score'] = decoy_scores[pw] + real_scores[pw]
+        elif real:
+            dist[pw]['score'] = real_scores[pw]
+        else:
+            dist[pw]['score'] = decoy_scores[pw]
+        # all scores should be already precomputed
+        # dist[pw]['score'] = pw_loss_calc(model['model'], model['SEQ_LENGTH'], model['VOCAB_SIZE'], model['i2c'], model['c2i'], pw)
 
     dist['___+ToTaL+___'] = {}
     dist['___+ToTaL+___']["sum"] = len(vault)
@@ -112,6 +115,8 @@ def rank(test_set):
         if cv['___real___']:
             return i
         i += 1
+    # real vault should be in test set
+    raise Exception
 
 """
 group: size of password vaults one of [2-3, 4-8, 9-50]
@@ -119,26 +124,32 @@ model: parameters for pw model specified if using loss from neural network
 decoy: True if using decoy trained model
 ranks the password vaults in a set of 1000 vaults
 """
-def eval_KL(group='2-3', model=None, decoy=True):
+def eval_KL(group='2-3', model=None, decoy=True, combined=False):
     print('Ranking vaults of size: ' + group)
     if model:
-        if decoy:
+        if combined:
+            print('Using both models')
+        elif decoy:
             print('Using decoy model.')
         else:
             print('Using real model.')
 
-    vpath = 'data/vault.json'
-    score_src = 'data/decoy_scores.json' if decoy else 'data/real_scores.json'
-    label = 'decoy' if decoy else 'real'
-    out_file = 'results/group_{}_{}.json'.format(group, label)
+    # reading precomputed password scores
+    with open('data/decoy-scores.json', 'r') as f:
+        decoy_scores = json.load(f)
+    with open('data/real-scores.json', 'r') as f:
+        real_scores = json.load(f)
+
+    if combined:
+        label = 'combined'
+    elif decoy:
+        label = 'decoy'
+    else:
+        label = 'real'
 
     # reading vault data
-    with open(vpath, 'r') as f:
+    with open('data/vault.json', 'r') as f:
         vault = json.load(f)
-
-    # reading precomputed password scores
-    with open(score_src, 'r') as f:
-        scores = json.load(f)
 
     print('reading password vaults')
     vaults = sorted(
@@ -150,11 +161,10 @@ def eval_KL(group='2-3', model=None, decoy=True):
     # computing distribution for each vault in the group
     for vault in vaults:
         if len(vault) >= lo and len(vault) <= hi:
-            dists.append(get_dist(vault, True, model))
+            dists.append(get_dist(vault, True, decoy, decoy_scores, real_scores, combined))
 
     print('constructing decoy vaults')
-    dv_path = 'data/decoy_vaults.txt'
-    d_vaults = get_vaults(dv_path, 50)
+    d_vaults = get_vaults('data/decoy_vaults.txt', 50)
 
     print('constructing probability distribution of decoys')
     pw_dist = get_pw_dist('data/decoys_withcount.txt')
@@ -162,6 +172,7 @@ def eval_KL(group='2-3', model=None, decoy=True):
     j = 0
     ranks = []
     ranks_wloss = []
+    out_file = 'results/group_{}_{}.json'.format(group, label)
     print('Saving output to {}'.format(out_file))
 
     # for each real vault, rank it in a set of 1000 vaults containing 999 decoy vaults
@@ -169,7 +180,7 @@ def eval_KL(group='2-3', model=None, decoy=True):
         j += 1
         print('Vault {}/{}'.format(j, len(dists)))
         decoys = construct_decoy_set(len(dist) - 2, d_vaults, 999)
-        decoy_dists = [get_dist(v, False, model, scores) for v in decoys]
+        decoy_dists = [get_dist(v, False, decoy, decoy_scores, real_scores, combined) for v in decoys]
         test_set = [dist] + decoy_dists
 
         # compute score with and without loss

@@ -4,13 +4,13 @@ from RNN_utils import pw_loss_calc
 
 """
 model: parameters for model
-decoy_vault_src: file path of decoy password vault
+vault_src: file path of decoy password vault
 dest: output file path
 precomputes scores for passwords in decoy vaults using trained model and stores dictionary in json file
 """
-def prep_vault(model, decoy_vault_src, dest):
+def prep_vault(model, vault_src, dest):
     scores = {}
-    with open(decoy_vault_src, 'r') as f:
+    with open(vault_src, 'r') as f:
         i = 0
         for line in f:
             i += 1

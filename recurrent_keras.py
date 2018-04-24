@@ -157,7 +157,10 @@ elif args['mode'] == 'eval':
     # eval_KL(group_size, params)
 
     # real model
-    eval_KL(group_size, params, False)
+    # eval_KL(group_size, params, False)
+
+    # combined model
+    eval_KL(group_size, params, True, True)
 elif args['mode'] == 'prep':
     from preprocess import prep_vault
     print('preprocessing decoy vault')
@@ -169,8 +172,10 @@ elif args['mode'] == 'prep':
         'i2c': i2c,
         'c2i': c2i
     }
-    prep_vault(params, 'data/decoy_vaults.txt', 'data/decoy_scores.json')
+    # prep_vault(params, 'data/decoy_vaults.txt', 'data/decoy_scores.json')
     # prep_vault(params, 'data/decoy_vaults.txt', 'data/real_scores.json')
+    # prep_vault(params, 'data/vault.txt', 'data/real_vault_decoy_scores.json')
+    prep_vault(params, 'data/vault.txt', 'data/real_vault_real_scores.json')
 
 # Else, performing generation
 else:
