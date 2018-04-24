@@ -30,17 +30,21 @@ from keras.callbacks import ModelCheckpoint, History
 from vault_utils import *
 
 # Parsing arguments for Network definition
-# data = 'rockyou'
-data = 'decoys'
 basedir = os.path.dirname(os.path.abspath(__file__))
-dataset = data + '_withcount.txt.bz2'
-# dataset = data + '-withcount.txt.bz2'
-num = '10'
-loss = '0.3978'
-val_loss = '1.5480'
-# num = '03'
-# loss = '0.5601'
-# val_loss = '0.9915'
+
+# Decoy model parameters
+# data = 'decoys'
+# dataset = data + '_withcount.txt.bz2'
+# num = '10'
+# loss = '0.3978'
+# val_loss = '1.5480'
+
+# Real model parameters
+data = 'rockyou'
+dataset = data + '-withcount.txt.bz2'
+num = '03'
+loss = '0.5601'
+val_loss = '0.9915'
 
 # decoys_L_3_H_320_epoch_10_loss_0.3978_val_loss_1.5480.hdf5
 
@@ -149,7 +153,11 @@ elif args['mode'] == 'eval':
         'i2c': i2c,
         'c2i': c2i
     }
-    eval_KL(group_size, params)
+    # decoy model
+    # eval_KL(group_size, params)
+
+    # real model
+    eval_KL(group_size, params, False)
 elif args['mode'] == 'prep':
     from preprocess import prep_vault
     print('preprocessing decoy vault')

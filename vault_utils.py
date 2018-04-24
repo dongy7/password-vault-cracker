@@ -121,10 +121,16 @@ ranks the password vaults in a set of 1000 vaults
 """
 def eval_KL(group='2-3', model=None, decoy=True):
     print('Ranking vaults of size: ' + group)
+    if model:
+        if decoy:
+            print('Using decoy model.')
+        else:
+            print('Using real model.')
 
-    out_file = 'results/group_{}.json'.format(group)
     vpath = 'data/vault.json'
     score_src = 'data/decoy_scores.json' if decoy else 'data/real_scores.json'
+    label = 'decoy' if decoy else 'real'
+    out_file = 'results/group_{}_{}.json'.format(group, label)
 
     # reading vault data
     with open(vpath, 'r') as f:
@@ -171,11 +177,11 @@ def eval_KL(group='2-3', model=None, decoy=True):
             cv['___score___'] = calculate_divergence(cv, pw_dist)
             cv['___score_with_loss___'] = calculate_divergence(cv, pw_dist, True)
 
-        # sort by the score in descending order
+        # sort by the score in descending order if using decoy model otherwise use ascending order
         sorted_set = sorted(
-            test_set, key=lambda x: x['___score___'], reverse=True)
+            test_set, key=lambda x: x['___score___'], reverse=decoy)
         sorted_loss_set = sorted(
-            test_set, key=lambda x: x['___score_with_loss___'], reverse=True)
+            test_set, key=lambda x: x['___score_with_loss___'], reverse=decoy)
 
         # find the rank of the real vault
         v_rank = rank(sorted_set)
