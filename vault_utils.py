@@ -85,6 +85,7 @@ def rank(test_set):
 
 def eval_KL(group='2-3', model=None):
     print('Ranking vaults of size: ' + group)
+    out_file = 'results/group_{}.json'.format(group)
     vpath = 'data/vault.json'
 
     with open(vpath, 'r') as f:
@@ -94,31 +95,12 @@ def eval_KL(group='2-3', model=None):
     vaults = sorted(
         [[pw for pw in val if len(pw) > 0] for _, val in vault.items()], key=lambda x: len(x), reverse=True)
 
-    # groups = ['2-3', '4-8', '9-50']
-    # vault_groups = {}
-    #     vault_groups[g]['vaults'] = []
-    #     vault_groups[g]['dists'] = []
-
     dists = []
     lo, hi = [int(x) for x in group.split('-')]
 
     for vault in vaults:
         if len(vault) >= lo and len(vault) <= hi:
             dists.append(get_dist(vault, True, model))
-
-        # if len(vault) < 2:
-        #     continue
-        # elif len(vault) <= 3:
-        #     group = '2-3'
-        # elif len(vault) <= 8:
-        #     group = '4-8'
-        # else:
-        #     group = '9-50'
-        # vault_groups[group]['vaults'].append(vault)
-        # vault_groups[group]['dists'].append(get_dist(vault, True, model))
-
-    # for v in vaults:
-    #     print(v)
 
     print('constructing decoy vaults')
     dv_path = 'data/decoy_vaults.txt'
@@ -130,23 +112,36 @@ def eval_KL(group='2-3', model=None):
 
     j = 0
     ranks = []
-    # print(d_vaults[0])
-    print(len(dists))
+    ranks_wloss = []
+    print('Saving output to {}'.format(out_file))
     for dist in dists:
         j += 1
-        print('Vault ' + str(j) + '/' + str(len(dists)))
+        print('Vault {}/{}'.format(j, len(dists)))
         decoys = construct_decoy_set(len(dist) - 2, d_vaults, 999)
-        # print(decoys)
         decoy_dists = [get_dist(v, False, model) for v in decoys]
         test_set = [dist] + decoy_dists
         for cv in test_set:
             cv['___score___'] = calculate_divergence(cv, pw_dist)
+            cv['___score_with_loss___'] = calculate_divergence(cv, pw_dist, True)
 
         sorted_set = sorted(
             test_set, key=lambda x: x['___score___'], reverse=True)
+        sorted_loss_set = sorted(
+            test_set, key=lambda x: x['___score_with_loss___'], reverse=True)
         v_rank = rank(sorted_set)
-        print("Rank: " + str(v_rank))
+        v_rank_wloss = rank(sorted_loss_set)
+        print("Rank: {},{}".format(v_rank, v_rank_wloss))
         ranks.append(v_rank)
+        ranks_wloss.append(v_rank_wloss)
 
     avg = sum(ranks) / len(ranks) / 1000 * 100
-    print('Average rank for ' + g + ': ' + str(round(avg, 2)) + '%')
+    avg_wloss = sum(ranks_wloss) / len(ranks_wloss) / 1000 * 100
+    data = {
+        'avg_rank': avg,
+        'ranks': ranks,
+        'ranks_wloss': ranks_wloss,
+        'avg_rank_wloss': avg_wloss
+    }
+
+    with open(out_file, 'w') as f:
+        json.dump(data, f)

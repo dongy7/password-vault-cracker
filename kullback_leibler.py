@@ -24,13 +24,13 @@ def get_prob(distribution, password):
 # Calculate the Kullback-Leibler divergence (sum).
 # p0 and p1: distributions
 #---
-def calculate_divergence(p0, p1):
+def calculate_divergence(p0, p1, loss=False):
     sum = 0.0
 
     for password in p0:
 
         # dont include the entry of total passwords
-        if (password != '___+ToTaL+___' and password != '___real___'):
+        if (password != '___+ToTaL+___' and password != '___real___' and password != '___score___'):
             divident = p0[password]['prob']
             divisor = get_prob(p1, password)
             factor = divident
@@ -59,7 +59,7 @@ def calculate_divergence(p0, p1):
 
             # consider number of occurences
             for i in range(0, int(p0[password]["occ"])):
-                if 'score' in p0[password]:
+                if loss:
                     sum = sum + factor * math.log(division, 2) * p0[password]['score']
                 else:
                     sum = sum + factor * math.log(division, 2)
