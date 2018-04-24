@@ -6,8 +6,8 @@
         ],
         "kl_rank": 0,
         "decoy_rank": 0,
-        "real_rank": 981,
-        "combined_rank": 0
+        "real_rank": 25,
+        "combined_rank": 1
     },
     {
         "vault": [
@@ -16,7 +16,7 @@
         ],
         "kl_rank": 0,
         "decoy_rank": 0,
-        "real_rank": 998,
+        "real_rank": 0,
         "combined_rank": 0
     },
     {
@@ -26,18 +26,8 @@
         ],
         "kl_rank": 0,
         "decoy_rank": 0,
-        "real_rank": 978,
-        "combined_rank": 0
-    },
-    {
-        "vault": [
-            "3AZUTA",
-            "3azuta"
-        ],
-        "kl_rank": 5,
-        "decoy_rank": 0,
-        "real_rank": 995,
-        "combined_rank": 0
+        "real_rank": 19,
+        "combined_rank": 1
     },
     {
         "vault": [
@@ -46,8 +36,8 @@
         ],
         "kl_rank": 0,
         "decoy_rank": 0,
-        "real_rank": 995,
-        "combined_rank": 2
+        "real_rank": 1,
+        "combined_rank": 0
     },
     {
         "vault": [
@@ -56,7 +46,7 @@
         ],
         "kl_rank": 0,
         "decoy_rank": 0,
-        "real_rank": 991,
+        "real_rank": 1,
         "combined_rank": 0
     },
     {
@@ -66,7 +56,7 @@
         ],
         "kl_rank": 0,
         "decoy_rank": 0,
-        "real_rank": 998,
+        "real_rank": 1,
         "combined_rank": 0
     },
     {
@@ -76,7 +66,7 @@
         ],
         "kl_rank": 0,
         "decoy_rank": 0,
-        "real_rank": 997,
+        "real_rank": 0,
         "combined_rank": 0
     },
     {
@@ -86,7 +76,7 @@
         ],
         "kl_rank": 0,
         "decoy_rank": 0,
-        "real_rank": 998,
+        "real_rank": 2,
         "combined_rank": 0
     },
     {
@@ -96,7 +86,7 @@
         ],
         "kl_rank": 0,
         "decoy_rank": 0,
-        "real_rank": 999,
+        "real_rank": 0,
         "combined_rank": 0
     },
     {
@@ -106,7 +96,29 @@
         ],
         "kl_rank": 0,
         "decoy_rank": 0,
-        "real_rank": 992,
+        "real_rank": 9,
+        "combined_rank": 0
+    },
+    {
+        "vault": [
+            "heroes24",
+            "heroes24",
+            "heroes24"
+        ],
+        "kl_rank": 0,
+        "decoy_rank": 0,
+        "real_rank": 5,
+        "combined_rank": 0
+    },
+    {
+        "vault": [
+            "1177716",
+            "1177716",
+            "1177716"
+        ],
+        "kl_rank": 0,
+        "decoy_rank": 0,
+        "real_rank": 0,
         "combined_rank": 0
     },
     {
@@ -117,17 +129,17 @@
         ],
         "kl_rank": 0,
         "decoy_rank": 0,
-        "real_rank": 989,
+        "real_rank": 3,
         "combined_rank": 0
     },
     {
         "vault": [
-            "haloguy111",
-            "haloguy111"
+            "9111995",
+            "9111995"
         ],
         "kl_rank": 0,
         "decoy_rank": 0,
-        "real_rank": 995,
+        "real_rank": 17,
         "combined_rank": 0
     },
     {
@@ -137,7 +149,7 @@
         ],
         "kl_rank": 0,
         "decoy_rank": 0,
-        "real_rank": 999,
+        "real_rank": 2,
         "combined_rank": 0
     },
     {
@@ -148,17 +160,37 @@
         ],
         "kl_rank": 0,
         "decoy_rank": 0,
-        "real_rank": 999,
+        "real_rank": 0,
         "combined_rank": 0
     },
     {
         "vault": [
-            "Bears",
-            "Chicago5"
+            "gta4fav",
+            "gta4fav"
         ],
-        "kl_rank": 2,
+        "kl_rank": 0,
         "decoy_rank": 1,
-        "real_rank": 670,
+        "real_rank": 2,
+        "combined_rank": 1
+    },
+    {
+        "vault": [
+            "peggy",
+            "peggy"
+        ],
+        "kl_rank": 0,
+        "decoy_rank": 1,
+        "real_rank": 42,
+        "combined_rank": 1
+    },
+    {
+        "vault": [
+            "dannyy1",
+            "dannyy1"
+        ],
+        "kl_rank": 0,
+        "decoy_rank": 1,
+        "real_rank": 16,
         "combined_rank": 1
     },
     {
@@ -168,7 +200,7 @@
         ],
         "kl_rank": 0,
         "decoy_rank": 1,
-        "real_rank": 994,
+        "real_rank": 0,
         "combined_rank": 1
     },
     {
@@ -178,109 +210,17 @@
         ],
         "kl_rank": 0,
         "decoy_rank": 1,
-        "real_rank": 998,
+        "real_rank": 3,
         "combined_rank": 1
     },
     {
         "vault": [
-            "heroes24",
-            "heroes24",
-            "heroes24"
+            "eatalltacos",
+            "eatalltacos"
         ],
         "kl_rank": 0,
         "decoy_rank": 1,
-        "real_rank": 989,
-        "combined_rank": 1
-    },
-    {
-        "vault": [
-            "1177716",
-            "1177716",
-            "1177716"
-        ],
-        "kl_rank": 0,
-        "decoy_rank": 1,
-        "real_rank": 998,
-        "combined_rank": 1
-    },
-    {
-        "vault": [
-            "k9meeko",
-            "k9meeko"
-        ],
-        "kl_rank": 0,
-        "decoy_rank": 1,
-        "real_rank": 995,
-        "combined_rank": 1
-    },
-    {
-        "vault": [
-            "taurus90",
-            "taurus90"
-        ],
-        "kl_rank": 0,
-        "decoy_rank": 1,
-        "real_rank": 979,
-        "combined_rank": 1
-    },
-    {
-        "vault": [
-            "rdhmeltk",
-            "rdhmeltk"
-        ],
-        "kl_rank": 0,
-        "decoy_rank": 2,
-        "real_rank": 995,
-        "combined_rank": 1
-    },
-    {
-        "vault": [
-            "gta4fav",
-            "gta4fav"
-        ],
-        "kl_rank": 0,
-        "decoy_rank": 2,
-        "real_rank": 994,
-        "combined_rank": 2
-    },
-    {
-        "vault": [
-            "warwick123",
-            "warwick123"
-        ],
-        "kl_rank": 0,
-        "decoy_rank": 2,
-        "real_rank": 994,
-        "combined_rank": 2
-    },
-    {
-        "vault": [
-            "psalty",
-            "psalty"
-        ],
-        "kl_rank": 0,
-        "decoy_rank": 2,
-        "real_rank": 958,
-        "combined_rank": 1
-    },
-    {
-        "vault": [
-            "123456789oO",
-            "zippo95688"
-        ],
-        "kl_rank": 3,
-        "decoy_rank": 2,
-        "real_rank": 993,
-        "combined_rank": 2
-    },
-    {
-        "vault": [
-            "dryice1",
-            "dryice1"
-        ],
-        "kl_rank": 0,
-        "decoy_rank": 2,
-        "real_rank": 982,
+        "real_rank": 6,
         "combined_rank": 1
     },
     {
@@ -289,227 +229,9 @@
             "hellomoto23"
         ],
         "kl_rank": 0,
-        "decoy_rank": 2,
-        "real_rank": 990,
+        "decoy_rank": 1,
+        "real_rank": 7,
         "combined_rank": 1
-    },
-    {
-        "vault": [
-            "9111995",
-            "9111995"
-        ],
-        "kl_rank": 0,
-        "decoy_rank": 2,
-        "real_rank": 983,
-        "combined_rank": 0
-    },
-    {
-        "vault": [
-            "devinlol",
-            "devinlol"
-        ],
-        "kl_rank": 0,
-        "decoy_rank": 2,
-        "real_rank": 994,
-        "combined_rank": 1
-    },
-    {
-        "vault": [
-            "Password",
-            "PasswordR#"
-        ],
-        "kl_rank": 41,
-        "decoy_rank": 3,
-        "real_rank": 977,
-        "combined_rank": 4
-    },
-    {
-        "vault": [
-            "Cartman117",
-            "Cartman117",
-            "Cartman1"
-        ],
-        "kl_rank": 3,
-        "decoy_rank": 3,
-        "real_rank": 973,
-        "combined_rank": 3
-    },
-    {
-        "vault": [
-            "SiEVuighmR",
-            "HJYqRjLk9o",
-            "JS0ArxqmF7"
-        ],
-        "kl_rank": 37,
-        "decoy_rank": 3,
-        "real_rank": 983,
-        "combined_rank": 3
-    },
-    {
-        "vault": [
-            "ichigobankai",
-            "ichigobankai",
-            "deathreaper"
-        ],
-        "kl_rank": 1,
-        "decoy_rank": 3,
-        "real_rank": 650,
-        "combined_rank": 3
-    },
-    {
-        "vault": [
-            "dannyy1",
-            "dannyy1"
-        ],
-        "kl_rank": 0,
-        "decoy_rank": 4,
-        "real_rank": 987,
-        "combined_rank": 2
-    },
-    {
-        "vault": [
-            "cermeno",
-            "cermeno",
-            "quixote1"
-        ],
-        "kl_rank": 4,
-        "decoy_rank": 4,
-        "real_rank": 976,
-        "combined_rank": 4
-    },
-    {
-        "vault": [
-            "mugen511",
-            "00004561M",
-            "00004561M"
-        ],
-        "kl_rank": 4,
-        "decoy_rank": 4,
-        "real_rank": 993,
-        "combined_rank": 4
-    },
-    {
-        "vault": [
-            "eissej",
-            "eissej"
-        ],
-        "kl_rank": 0,
-        "decoy_rank": 4,
-        "real_rank": 944,
-        "combined_rank": 4
-    },
-    {
-        "vault": [
-            "Sebismybro1",
-            "sebismybro",
-            "sebismybro"
-        ],
-        "kl_rank": 3,
-        "decoy_rank": 5,
-        "real_rank": 987,
-        "combined_rank": 5
-    },
-    {
-        "vault": [
-            "peggy",
-            "peggy"
-        ],
-        "kl_rank": 0,
-        "decoy_rank": 5,
-        "real_rank": 948,
-        "combined_rank": 3
-    },
-    {
-        "vault": [
-            "capercato",
-            "Daisy26000"
-        ],
-        "kl_rank": 7,
-        "decoy_rank": 5,
-        "real_rank": 982,
-        "combined_rank": 5
-    },
-    {
-        "vault": [
-            "b100b317t",
-            "b100b317o"
-        ],
-        "kl_rank": 5,
-        "decoy_rank": 5,
-        "real_rank": 983,
-        "combined_rank": 6
-    },
-    {
-        "vault": [
-            "t1n9b4",
-            "t1n9b4",
-            "abdulbasith"
-        ],
-        "kl_rank": 4,
-        "decoy_rank": 5,
-        "real_rank": 989,
-        "combined_rank": 5
-    },
-    {
-        "vault": [
-            "kingkilla1",
-            "kingkilla1"
-        ],
-        "kl_rank": 0,
-        "decoy_rank": 5,
-        "real_rank": 967,
-        "combined_rank": 4
-    },
-    {
-        "vault": [
-            "123456",
-            "gHto4tQSyJ"
-        ],
-        "kl_rank": 189,
-        "decoy_rank": 5,
-        "real_rank": 970,
-        "combined_rank": 5
-    },
-    {
-        "vault": [
-            "6463973",
-            "jigga123"
-        ],
-        "kl_rank": 7,
-        "decoy_rank": 5,
-        "real_rank": 983,
-        "combined_rank": 5
-    },
-    {
-        "vault": [
-            "sassydog",
-            "F00tball1"
-        ],
-        "kl_rank": 5,
-        "decoy_rank": 5,
-        "real_rank": 558,
-        "combined_rank": 5
-    },
-    {
-        "vault": [
-            "d0d0tr1X.",
-            "dodotrix",
-            "dodotrix"
-        ],
-        "kl_rank": 6,
-        "decoy_rank": 6,
-        "real_rank": 986,
-        "combined_rank": 6
-    },
-    {
-        "vault": [
-            "Jalon08#7",
-            "Da0aa3Se4jo5"
-        ],
-        "kl_rank": 4,
-        "decoy_rank": 6,
-        "real_rank": 990,
-        "combined_rank": 6
     },
     {
         "vault": [
@@ -517,9 +239,173 @@
             "rangers.1",
             "callumburns1"
         ],
+        "kl_rank": 1,
+        "decoy_rank": 2,
+        "real_rank": 134,
+        "combined_rank": 2
+    },
+    {
+        "vault": [
+            "eissej",
+            "eissej"
+        ],
+        "kl_rank": 0,
+        "decoy_rank": 2,
+        "real_rank": 70,
+        "combined_rank": 1
+    },
+    {
+        "vault": [
+            "k9meeko",
+            "k9meeko"
+        ],
+        "kl_rank": 0,
+        "decoy_rank": 2,
+        "real_rank": 2,
+        "combined_rank": 2
+    },
+    {
+        "vault": [
+            "taurus90",
+            "taurus90"
+        ],
+        "kl_rank": 0,
+        "decoy_rank": 2,
+        "real_rank": 14,
+        "combined_rank": 2
+    },
+    {
+        "vault": [
+            "BOS08051585",
+            "bos08051585@boingo.com"
+        ],
+        "kl_rank": 33,
+        "decoy_rank": 3,
+        "real_rank": 19,
+        "combined_rank": 3
+    },
+    {
+        "vault": [
+            "d0d0tr1X.",
+            "dodotrix",
+            "dodotrix"
+        ],
         "kl_rank": 3,
-        "decoy_rank": 6,
-        "real_rank": 859,
+        "decoy_rank": 3,
+        "real_rank": 8,
+        "combined_rank": 3
+    },
+    {
+        "vault": [
+            "3AZUTA",
+            "3azuta"
+        ],
+        "kl_rank": 26,
+        "decoy_rank": 3,
+        "real_rank": 10,
+        "combined_rank": 3
+    },
+    {
+        "vault": [
+            "Cartman117",
+            "Cartman117",
+            "Cartman1"
+        ],
+        "kl_rank": 4,
+        "decoy_rank": 3,
+        "real_rank": 19,
+        "combined_rank": 5
+    },
+    {
+        "vault": [
+            "mugen511",
+            "00004561M",
+            "00004561M"
+        ],
+        "kl_rank": 3,
+        "decoy_rank": 3,
+        "real_rank": 7,
+        "combined_rank": 3
+    },
+    {
+        "vault": [
+            "haloguy111",
+            "haloguy111"
+        ],
+        "kl_rank": 0,
+        "decoy_rank": 3,
+        "real_rank": 8,
+        "combined_rank": 3
+    },
+    {
+        "vault": [
+            "devinlol",
+            "devinlol"
+        ],
+        "kl_rank": 0,
+        "decoy_rank": 3,
+        "real_rank": 2,
+        "combined_rank": 1
+    },
+    {
+        "vault": [
+            "rdhmeltk",
+            "rdhmeltk"
+        ],
+        "kl_rank": 0,
+        "decoy_rank": 4,
+        "real_rank": 10,
+        "combined_rank": 4
+    },
+    {
+        "vault": [
+            "cermeno",
+            "cermeno",
+            "quixote1"
+        ],
+        "kl_rank": 2,
+        "decoy_rank": 4,
+        "real_rank": 17,
+        "combined_rank": 4
+    },
+    {
+        "vault": [
+            "Jalon08#7",
+            "Da0aa3Se4jo5"
+        ],
+        "kl_rank": 34,
+        "decoy_rank": 4,
+        "real_rank": 30,
+        "combined_rank": 6
+    },
+    {
+        "vault": [
+            "123456",
+            "gHto4tQSyJ"
+        ],
+        "kl_rank": 409,
+        "decoy_rank": 4,
+        "real_rank": 170,
+        "combined_rank": 15
+    },
+    {
+        "vault": [
+            "123456",
+            "JFtvJ504NA=="
+        ],
+        "kl_rank": 443,
+        "decoy_rank": 4,
+        "real_rank": 44,
+        "combined_rank": 8
+    },
+    {
+        "vault": [
+            "tara",
+            "tara"
+        ],
+        "kl_rank": 0,
+        "decoy_rank": 5,
+        "real_rank": 168,
         "combined_rank": 5
     },
     {
@@ -528,31 +414,104 @@
             "nohackersallowed]",
             "andrew1"
         ],
-        "kl_rank": 9,
-        "decoy_rank": 7,
-        "real_rank": 989,
+        "kl_rank": 7,
+        "decoy_rank": 5,
+        "real_rank": 12,
         "combined_rank": 5
     },
     {
         "vault": [
-            "slipknot666",
-            "slipknot666sk8"
+            "enycegirlie",
+            "enycegirlie",
+            "enycegirlie1"
         ],
-        "kl_rank": 7,
-        "decoy_rank": 7,
-        "real_rank": 938,
+        "kl_rank": 1,
+        "decoy_rank": 5,
+        "real_rank": 10,
+        "combined_rank": 3
+    },
+    {
+        "vault": [
+            "warwick123",
+            "warwick123"
+        ],
+        "kl_rank": 0,
+        "decoy_rank": 6,
+        "real_rank": 8,
+        "combined_rank": 4
+    },
+    {
+        "vault": [
+            "psalty",
+            "psalty"
+        ],
+        "kl_rank": 0,
+        "decoy_rank": 6,
+        "real_rank": 39,
+        "combined_rank": 6
+    },
+    {
+        "vault": [
+            "123456789oO",
+            "zippo95688"
+        ],
+        "kl_rank": 25,
+        "decoy_rank": 6,
+        "real_rank": 16,
         "combined_rank": 7
     },
     {
         "vault": [
-            "rhavae7",
-            "mikeisha91",
-            "mikeisha91"
+            "kingkilla1",
+            "kingkilla1"
         ],
-        "kl_rank": 4,
+        "kl_rank": 0,
+        "decoy_rank": 6,
+        "real_rank": 40,
+        "combined_rank": 5
+    },
+    {
+        "vault": [
+            "dryice1",
+            "dryice1"
+        ],
+        "kl_rank": 0,
+        "decoy_rank": 6,
+        "real_rank": 24,
+        "combined_rank": 5
+    },
+    {
+        "vault": [
+            "Sebismybro1",
+            "sebismybro",
+            "sebismybro"
+        ],
+        "kl_rank": 5,
         "decoy_rank": 7,
-        "real_rank": 985,
+        "real_rank": 22,
         "combined_rank": 7
+    },
+    {
+        "vault": [
+            "SiEVuighmR",
+            "HJYqRjLk9o",
+            "JS0ArxqmF7"
+        ],
+        "kl_rank": 243,
+        "decoy_rank": 7,
+        "real_rank": 63,
+        "combined_rank": 10
+    },
+    {
+        "vault": [
+            "ichigobankai",
+            "ichigobankai",
+            "deathreaper"
+        ],
+        "kl_rank": 5,
+        "decoy_rank": 8,
+        "real_rank": 325,
+        "combined_rank": 6
     },
     {
         "vault": [
@@ -561,308 +520,51 @@
             "jillxrebecca"
         ],
         "kl_rank": 4,
-        "decoy_rank": 7,
-        "real_rank": 989,
-        "combined_rank": 5
-    },
-    {
-        "vault": [
-            "123456",
-            "JFtvJ504NA=="
-        ],
-        "kl_rank": 194,
-        "decoy_rank": 7,
-        "real_rank": 985,
-        "combined_rank": 7
-    },
-    {
-        "vault": [
-            "chilita27",
-            "purple27r"
-        ],
-        "kl_rank": 3,
         "decoy_rank": 8,
-        "real_rank": 981,
-        "combined_rank": 8
+        "real_rank": 14,
+        "combined_rank": 6
     },
     {
         "vault": [
-            "enycegirlie",
-            "enycegirlie",
-            "enycegirlie1"
+            "t1n9b4",
+            "t1n9b4",
+            "abdulbasith"
         ],
-        "kl_rank": 5,
-        "decoy_rank": 8,
-        "real_rank": 981,
-        "combined_rank": 7
-    },
-    {
-        "vault": [
-            "BOS08051585",
-            "bos08051585@boingo.com"
-        ],
-        "kl_rank": 11,
+        "kl_rank": 6,
         "decoy_rank": 9,
-        "real_rank": 986,
-        "combined_rank": 9
+        "real_rank": 9,
+        "combined_rank": 6
     },
     {
         "vault": [
-            "tara",
-            "tara"
+            "rhavae7",
+            "mikeisha91",
+            "mikeisha91"
         ],
-        "kl_rank": 0,
+        "kl_rank": 4,
         "decoy_rank": 9,
-        "real_rank": 853,
-        "combined_rank": 9
+        "real_rank": 10,
+        "combined_rank": 6
     },
     {
         "vault": [
-            "eatalltacos",
-            "eatalltacos"
+            "Bears",
+            "Chicago5"
         ],
-        "kl_rank": 0,
-        "decoy_rank": 9,
-        "real_rank": 987,
-        "combined_rank": 8
-    },
-    {
-        "vault": [
-            "me654321i",
-            "me654321n",
-            "me654321q"
-        ],
-        "kl_rank": 25,
+        "kl_rank": 24,
         "decoy_rank": 10,
-        "real_rank": 976,
-        "combined_rank": 10
-    },
-    {
-        "vault": [
-            "bardiabardia",
-            "choretsham",
-            "choretSHAM"
-        ],
-        "kl_rank": 21,
-        "decoy_rank": 10,
-        "real_rank": 909,
-        "combined_rank": 18
-    },
-    {
-        "vault": [
-            "gifford",
-            "gifford1"
-        ],
-        "kl_rank": 8,
-        "decoy_rank": 12,
-        "real_rank": 527,
-        "combined_rank": 10
-    },
-    {
-        "vault": [
-            "mylife123",
-            "1amigosporsiempre2"
-        ],
-        "kl_rank": 9,
-        "decoy_rank": 12,
-        "real_rank": 879,
-        "combined_rank": 12
-    },
-    {
-        "vault": [
-            "rehmani619",
-            "rehmani1"
-        ],
-        "kl_rank": 7,
-        "decoy_rank": 15,
-        "real_rank": 979,
+        "real_rank": 535,
         "combined_rank": 14
     },
     {
         "vault": [
-            "sophie2005",
-            "1989"
+            "6463973",
+            "jigga123"
         ],
-        "kl_rank": 26,
-        "decoy_rank": 16,
-        "real_rank": 623,
-        "combined_rank": 16
-    },
-    {
-        "vault": [
-            "pmb61515\\",
-            "pmb61515m",
-            "kunglao8i"
-        ],
-        "kl_rank": 26,
-        "decoy_rank": 18,
-        "real_rank": 957,
+        "kl_rank": 30,
+        "decoy_rank": 14,
+        "real_rank": 96,
         "combined_rank": 14
-    },
-    {
-        "vault": [
-            "tamera11",
-            "tamera1"
-        ],
-        "kl_rank": 5,
-        "decoy_rank": 19,
-        "real_rank": 483,
-        "combined_rank": 19
-    },
-    {
-        "vault": [
-            "tikibird1",
-            "dspcws"
-        ],
-        "kl_rank": 3,
-        "decoy_rank": 20,
-        "real_rank": 966,
-        "combined_rank": 19
-    },
-    {
-        "vault": [
-            "yovier1234",
-            "elnene1",
-            "yovier012245"
-        ],
-        "kl_rank": 24,
-        "decoy_rank": 21,
-        "real_rank": 833,
-        "combined_rank": 22
-    },
-    {
-        "vault": [
-            "chloe21",
-            "chloe21"
-        ],
-        "kl_rank": 7,
-        "decoy_rank": 22,
-        "real_rank": 957,
-        "combined_rank": 16
-    },
-    {
-        "vault": [
-            "123456789oO",
-            "password_",
-            "passwordi"
-        ],
-        "kl_rank": 164,
-        "decoy_rank": 26,
-        "real_rank": 732,
-        "combined_rank": 30
-    },
-    {
-        "vault": [
-            "live",
-            "live"
-        ],
-        "kl_rank": 16,
-        "decoy_rank": 26,
-        "real_rank": 969,
-        "combined_rank": 21
-    },
-    {
-        "vault": [
-            "monkey12",
-            "monkey12"
-        ],
-        "kl_rank": 17,
-        "decoy_rank": 29,
-        "real_rank": 894,
-        "combined_rank": 25
-    },
-    {
-        "vault": [
-            "resident2",
-            "resident2"
-        ],
-        "kl_rank": 12,
-        "decoy_rank": 33,
-        "real_rank": 971,
-        "combined_rank": 22
-    },
-    {
-        "vault": [
-            "buddypinedjs2010@",
-            "buddypinedjs",
-            "buddypinedjs2009@"
-        ],
-        "kl_rank": 40,
-        "decoy_rank": 36,
-        "real_rank": 933,
-        "combined_rank": 36
-    },
-    {
-        "vault": [
-            "pf1970emm",
-            "pf1970eme",
-            "pf1970eml"
-        ],
-        "kl_rank": 25,
-        "decoy_rank": 38,
-        "real_rank": 915,
-        "combined_rank": 37
-    },
-    {
-        "vault": [
-            "free",
-            "free"
-        ],
-        "kl_rank": 17,
-        "decoy_rank": 38,
-        "real_rank": 935,
-        "combined_rank": 29
-    },
-    {
-        "vault": [
-            "ihatehacker",
-            "dragon10o",
-            "inuyasha10"
-        ],
-        "kl_rank": 24,
-        "decoy_rank": 43,
-        "real_rank": 527,
-        "combined_rank": 44
-    },
-    {
-        "vault": [
-            "chandler333",
-            "chandler"
-        ],
-        "kl_rank": 71,
-        "decoy_rank": 46,
-        "real_rank": 898,
-        "combined_rank": 51
-    },
-    {
-        "vault": [
-            "kaikai1",
-            "kaikai1"
-        ],
-        "kl_rank": 17,
-        "decoy_rank": 47,
-        "real_rank": 941,
-        "combined_rank": 43
-    },
-    {
-        "vault": [
-            "broncos1",
-            "broncos1"
-        ],
-        "kl_rank": 13,
-        "decoy_rank": 58,
-        "real_rank": 901,
-        "combined_rank": 53
-    },
-    {
-        "vault": [
-            "purple1966",
-            "purple"
-        ],
-        "kl_rank": 130,
-        "decoy_rank": 79,
-        "real_rank": 889,
-        "combined_rank": 63
     },
     {
         "vault": [
@@ -870,30 +572,131 @@
             "puddin",
             "puddin"
         ],
-        "kl_rank": 70,
-        "decoy_rank": 86,
-        "real_rank": 930,
-        "combined_rank": 79
+        "kl_rank": 12,
+        "decoy_rank": 17,
+        "real_rank": 17,
+        "combined_rank": 13
     },
     {
         "vault": [
-            "scott1",
-            "scott1"
+            "resident2",
+            "resident2"
         ],
-        "kl_rank": 42,
-        "decoy_rank": 165,
-        "real_rank": 753,
-        "combined_rank": 161
+        "kl_rank": 8,
+        "decoy_rank": 19,
+        "real_rank": 17,
+        "combined_rank": 12
     },
     {
         "vault": [
-            "vanilla",
-            "vanilla"
+            "capercato",
+            "Daisy26000"
         ],
-        "kl_rank": 202,
-        "decoy_rank": 260,
-        "real_rank": 743,
-        "combined_rank": 255
+        "kl_rank": 28,
+        "decoy_rank": 20,
+        "real_rank": 127,
+        "combined_rank": 25
+    },
+    {
+        "vault": [
+            "Password",
+            "PasswordR#"
+        ],
+        "kl_rank": 354,
+        "decoy_rank": 24,
+        "real_rank": 270,
+        "combined_rank": 46
+    },
+    {
+        "vault": [
+            "chilita27",
+            "purple27r"
+        ],
+        "kl_rank": 20,
+        "decoy_rank": 27,
+        "real_rank": 92,
+        "combined_rank": 26
+    },
+    {
+        "vault": [
+            "monkey12",
+            "monkey12"
+        ],
+        "kl_rank": 12,
+        "decoy_rank": 27,
+        "real_rank": 82,
+        "combined_rank": 24
+    },
+    {
+        "vault": [
+            "bardiabardia",
+            "choretsham",
+            "choretSHAM"
+        ],
+        "kl_rank": 218,
+        "decoy_rank": 28,
+        "real_rank": 320,
+        "combined_rank": 84
+    },
+    {
+        "vault": [
+            "chloe21",
+            "chloe21"
+        ],
+        "kl_rank": 5,
+        "decoy_rank": 29,
+        "real_rank": 32,
+        "combined_rank": 13
+    },
+    {
+        "vault": [
+            "sassydog",
+            "F00tball1"
+        ],
+        "kl_rank": 25,
+        "decoy_rank": 29,
+        "real_rank": 636,
+        "combined_rank": 39
+    },
+    {
+        "vault": [
+            "free",
+            "free"
+        ],
+        "kl_rank": 13,
+        "decoy_rank": 30,
+        "real_rank": 44,
+        "combined_rank": 25
+    },
+    {
+        "vault": [
+            "live",
+            "live"
+        ],
+        "kl_rank": 11,
+        "decoy_rank": 32,
+        "real_rank": 26,
+        "combined_rank": 22
+    },
+    {
+        "vault": [
+            "slipknot666",
+            "slipknot666sk8"
+        ],
+        "kl_rank": 26,
+        "decoy_rank": 35,
+        "real_rank": 371,
+        "combined_rank": 31
+    },
+    {
+        "vault": [
+            "b100b317t",
+            "b100b317o"
+        ],
+        "kl_rank": 34,
+        "decoy_rank": 41,
+        "real_rank": 129,
+        "combined_rank": 47
     },
     {
         "vault": [
@@ -901,63 +704,156 @@
             "popcorn",
             "popcorn"
         ],
-        "kl_rank": 308,
-        "decoy_rank": 298,
-        "real_rank": 724,
-        "combined_rank": 294
+        "kl_rank": 19,
+        "decoy_rank": 42,
+        "real_rank": 29,
+        "combined_rank": 40
     },
     {
         "vault": [
-            "matthew1",
-            "matthew1",
-            "matthew321"
+            "gifford",
+            "gifford1"
         ],
-        "kl_rank": 314,
-        "decoy_rank": 330,
-        "real_rank": 432,
-        "combined_rank": 338
+        "kl_rank": 22,
+        "decoy_rank": 44,
+        "real_rank": 663,
+        "combined_rank": 38
     },
     {
         "vault": [
-            "dillon123",
-            "dillon123!",
-            "dillon"
+            "me654321i",
+            "me654321n",
+            "me654321q"
         ],
-        "kl_rank": 403,
-        "decoy_rank": 337,
-        "real_rank": 563,
-        "combined_rank": 329
+        "kl_rank": 222,
+        "decoy_rank": 48,
+        "real_rank": 146,
+        "combined_rank": 49
     },
     {
         "vault": [
-            "austin",
-            "austin"
+            "kaikai1",
+            "kaikai1"
         ],
-        "kl_rank": 365,
-        "decoy_rank": 338,
-        "real_rank": 686,
-        "combined_rank": 337
+        "kl_rank": 16,
+        "decoy_rank": 53,
+        "real_rank": 49,
+        "combined_rank": 44
     },
     {
         "vault": [
-            "ginger",
-            "ginger"
+            "mylife123",
+            "1amigosporsiempre2"
         ],
-        "kl_rank": 387,
-        "decoy_rank": 363,
-        "real_rank": 669,
-        "combined_rank": 354
+        "kl_rank": 30,
+        "decoy_rank": 55,
+        "real_rank": 415,
+        "combined_rank": 53
     },
     {
         "vault": [
-            "moneymaker",
-            "moneymaker",
-            "money"
+            "broncos1",
+            "broncos1"
         ],
-        "kl_rank": 453,
-        "decoy_rank": 462,
-        "real_rank": 518,
-        "combined_rank": 457
+        "kl_rank": 26,
+        "decoy_rank": 76,
+        "real_rank": 142,
+        "combined_rank": 73
+    },
+    {
+        "vault": [
+            "rehmani619",
+            "rehmani1"
+        ],
+        "kl_rank": 26,
+        "decoy_rank": 85,
+        "real_rank": 176,
+        "combined_rank": 80
+    },
+    {
+        "vault": [
+            "pmb61515\\",
+            "pmb61515m",
+            "kunglao8i"
+        ],
+        "kl_rank": 213,
+        "decoy_rank": 90,
+        "real_rank": 184,
+        "combined_rank": 86
+    },
+    {
+        "vault": [
+            "buddypinedjs2010@",
+            "buddypinedjs",
+            "buddypinedjs2009@"
+        ],
+        "kl_rank": 228,
+        "decoy_rank": 90,
+        "real_rank": 255,
+        "combined_rank": 103
+    },
+    {
+        "vault": [
+            "yovier1234",
+            "elnene1",
+            "yovier012245"
+        ],
+        "kl_rank": 222,
+        "decoy_rank": 104,
+        "real_rank": 397,
+        "combined_rank": 109
+    },
+    {
+        "vault": [
+            "123456789oO",
+            "password_",
+            "passwordi"
+        ],
+        "kl_rank": 373,
+        "decoy_rank": 117,
+        "real_rank": 443,
+        "combined_rank": 139
+    },
+    {
+        "vault": [
+            "tikibird1",
+            "dspcws"
+        ],
+        "kl_rank": 19,
+        "decoy_rank": 124,
+        "real_rank": 209,
+        "combined_rank": 113
+    },
+    {
+        "vault": [
+            "scott1",
+            "scott1"
+        ],
+        "kl_rank": 33,
+        "decoy_rank": 160,
+        "real_rank": 230,
+        "combined_rank": 158
+    },
+    {
+        "vault": [
+            "pf1970emm",
+            "pf1970eme",
+            "pf1970eml"
+        ],
+        "kl_rank": 214,
+        "decoy_rank": 174,
+        "real_rank": 296,
+        "combined_rank": 170
+    },
+    {
+        "vault": [
+            "tamera11",
+            "tamera1"
+        ],
+        "kl_rank": 38,
+        "decoy_rank": 201,
+        "real_rank": 765,
+        "combined_rank": 189
     },
     {
         "vault": [
@@ -965,41 +861,134 @@
             "baseball",
             "baseball"
         ],
-        "kl_rank": 373,
-        "decoy_rank": 530,
-        "real_rank": 461,
-        "combined_rank": 530
+        "kl_rank": 34,
+        "decoy_rank": 203,
+        "real_rank": 161,
+        "combined_rank": 200
+    },
+    {
+        "vault": [
+            "sophie2005",
+            "1989"
+        ],
+        "kl_rank": 321,
+        "decoy_rank": 213,
+        "real_rank": 588,
+        "combined_rank": 224
+    },
+    {
+        "vault": [
+            "ihatehacker",
+            "dragon10o",
+            "inuyasha10"
+        ],
+        "kl_rank": 230,
+        "decoy_rank": 230,
+        "real_rank": 599,
+        "combined_rank": 237
+    },
+    {
+        "vault": [
+            "vanilla",
+            "vanilla"
+        ],
+        "kl_rank": 227,
+        "decoy_rank": 273,
+        "real_rank": 258,
+        "combined_rank": 266
+    },
+    {
+        "vault": [
+            "chandler333",
+            "chandler"
+        ],
+        "kl_rank": 357,
+        "decoy_rank": 305,
+        "real_rank": 425,
+        "combined_rank": 307
+    },
+    {
+        "vault": [
+            "austin",
+            "austin"
+        ],
+        "kl_rank": 359,
+        "decoy_rank": 339,
+        "real_rank": 322,
+        "combined_rank": 343
+    },
+    {
+        "vault": [
+            "matthew1",
+            "matthew1",
+            "matthew321"
+        ],
+        "kl_rank": 317,
+        "decoy_rank": 350,
+        "real_rank": 568,
+        "combined_rank": 345
+    },
+    {
+        "vault": [
+            "purple1966",
+            "purple"
+        ],
+        "kl_rank": 400,
+        "decoy_rank": 364,
+        "real_rank": 437,
+        "combined_rank": 340
+    },
+    {
+        "vault": [
+            "ginger",
+            "ginger"
+        ],
+        "kl_rank": 387,
+        "decoy_rank": 374,
+        "real_rank": 348,
+        "combined_rank": 363
+    },
+    {
+        "vault": [
+            "dillon123",
+            "dillon123!",
+            "dillon"
+        ],
+        "kl_rank": 553,
+        "decoy_rank": 507,
+        "real_rank": 584,
+        "combined_rank": 501
+    },
+    {
+        "vault": [
+            "moneymaker",
+            "moneymaker",
+            "money"
+        ],
+        "kl_rank": 473,
+        "decoy_rank": 510,
+        "real_rank": 530,
+        "combined_rank": 505
     },
     {
         "vault": [
             "basketball",
             "basketball"
         ],
-        "kl_rank": 461,
-        "decoy_rank": 573,
-        "real_rank": 419,
-        "combined_rank": 577
+        "kl_rank": 436,
+        "decoy_rank": 550,
+        "real_rank": 552,
+        "combined_rank": 554
     },
     {
         "vault": [
             "jessica123",
             "jessica"
         ],
-        "kl_rank": 547,
-        "decoy_rank": 630,
-        "real_rank": 259,
-        "combined_rank": 627
-    },
-    {
-        "vault": [
-            "monster1",
-            "tucker",
-            "tucker1"
-        ],
-        "kl_rank": 678,
-        "decoy_rank": 703,
-        "real_rank": 244,
-        "combined_rank": 703
+        "kl_rank": 765,
+        "decoy_rank": 810,
+        "real_rank": 871,
+        "combined_rank": 810
     },
     {
         "vault": [
@@ -1007,9 +996,20 @@
             "123456",
             "123456"
         ],
-        "kl_rank": 967,
-        "decoy_rank": 814,
-        "real_rank": 212,
-        "combined_rank": 814
+        "kl_rank": 969,
+        "decoy_rank": 825,
+        "real_rank": 799,
+        "combined_rank": 828
+    },
+    {
+        "vault": [
+            "monster1",
+            "tucker",
+            "tucker1"
+        ],
+        "kl_rank": 810,
+        "decoy_rank": 835,
+        "real_rank": 894,
+        "combined_rank": 835
     }
 ]
