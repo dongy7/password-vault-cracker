@@ -27,14 +27,22 @@ def get_prob(distribution, password):
 # score_key: name of key that contains score
 #---
 def calculate_divergence(p0, p1, loss=False, score_key=''):
+    # returns True if pw is a password in dictionary and not a reserved field
     def is_pw(pw):
-        reserved = ['___+ToTaL+___', '___real___', '___score___', '___decoy_score___', '___real_score___', 'combined_score___']
+        # reserved fields in dictionary that should not be used as pw
+        reserved = [
+            '___+ToTaL+___',
+            '___real___',
+            '___vault___',
+            '___score___',
+            '___decoy_score___',
+            '___real_score___'
+        ]
         return not (pw in reserved)
     sum = 0.0
 
     for password in p0:
-
-        # dont include the entry of total passwords
+        # dont include metadata fields
         if (is_pw(password)):
             divident = p0[password]['prob']
             divisor = get_prob(p1, password)

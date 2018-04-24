@@ -99,6 +99,10 @@ def get_dist(vault, real=False, decoy_scores=None, real_scores=None):
     dist['___+ToTaL+___']["sum"] = len(vault)
     dist['___real___'] = real
 
+    # if vault is real, save vault passwords for later evaluation
+    if real:
+        dist['___vault___'] = vault
+
     return dist
 
 """
@@ -115,9 +119,18 @@ def rank(test_set):
     raise Exception
 
 """
+test_set: list of vaults in order of KL divergence in decreasing order
+returns the real vault
+"""
+def get_vault(test_set):
+    for cv in test_set:
+        if cv['___real___']:
+            return cv
+    raise Exception
+
+"""
 group: size of password vaults one of [2-3, 4-8, 9-50]
 model: parameters for pw model specified if using loss from neural network
-decoy: True if using decoy trained model
 ranks the password vaults in a set of 1000 vaults
 """
 def eval_KL(group='2-3', model=None):
@@ -134,8 +147,7 @@ def eval_KL(group='2-3', model=None):
         vault = json.load(f)
 
     print('reading password vaults')
-    vaults = sorted(
-        [[pw for pw in val if len(pw) > 0] for _, val in vault.items()], key=lambda x: len(x), reverse=True)
+    vaults = [[pw for pw in val if len(pw) > 0] for _, val in vault.items()]
 
     dists = []
     lo, hi = [int(x) for x in group.split('-')]
@@ -152,18 +164,15 @@ def eval_KL(group='2-3', model=None):
     decoy_pw_dist = get_pw_dist('data/decoys_withcount.txt')
     real_pw_dist = get_pw_dist('data/rockyou-withcount.txt')
 
-    j = 0
     ranks = []
     decoy_ranks = []
     real_ranks = []
     combined_ranks = []
-    out_file = 'results/group_{}.json'.format(group)
-    print('Saving output to {}'.format(out_file))
+
+    vault_rankings = []
 
     # for each real vault, rank it in a set of 1000 vaults containing 999 decoy vaults
     for dist in dists:
-        j += 1
-        print('Vault {}/{}'.format(j, len(dists)))
         decoys = construct_decoy_set(len(dist) - 2, d_vaults, 999)
         decoy_dists = [get_dist(v, False, decoy_scores, real_scores) for v in decoys]
         test_set = [dist] + decoy_dists
@@ -172,7 +181,7 @@ def eval_KL(group='2-3', model=None):
         for cv in test_set:
             cv['___score___'] = calculate_divergence(cv, decoy_pw_dist)
             cv['___decoy_score___'] = calculate_divergence(cv, decoy_pw_dist, True, 'decoy_score')
-            cv['___real_score___'] = calculate_divergence(cv, decoy_pw_dist, True, 'real_score')
+            cv['___real_score___'] = calculate_divergence(cv, real_pw_dist, True, 'real_score')
             cv['___combined_score___'] = calculate_divergence(cv, decoy_pw_dist, True, 'combined_score')
 
         # sort by the score in descending order if using decoy model otherwise use ascending order
@@ -191,24 +200,41 @@ def eval_KL(group='2-3', model=None):
 
         # print("Rank: {},{}".format(v_rank, v_rank_wloss))
 
+        vault = get_vault(sorted_set)
+
         # append rank of real vault
-        ranks.append(rank(sorted_set))
-        decoy_ranks.append(rank(sorted_decoy_set))
-        real_ranks.append(rank(sorted_real_set))
-        combined_ranks.append(rank(sorted_combined_set))
+        kl_rank = rank(sorted_set)
+        decoy_rank = rank(sorted_decoy_set)
+        real_rank = rank(sorted_real_set)
+        combined_rank = rank(sorted_combined_set)
+
+        ranks.append(kl_rank)
+        decoy_ranks.append(decoy_rank)
+        real_ranks.append(real_rank)
+        combined_ranks.append(combined_rank)
+
+        vault_rankings.append({
+            'vault': vault['___vault___'],
+            'kl_rank': kl_rank,
+            'decoy_rank': decoy_rank,
+            'real_rank': real_rank,
+            'combined_rank': combined_rank
+        })
 
     # find average rank across all real vaults
     # avg = sum(ranks) / len(ranks) / 1000 * 100
     # avg_wloss = sum(ranks_wloss) / len(ranks_wloss) / 1000 * 100
     data = {
-        # 'avg_rank': avg,
         'ranks': ranks,
         'decoy_ranks': decoy_ranks,
         'real_ranks': real_ranks,
         'combined_ranks': combined_ranks,
-        # 'ranks_wloss': ranks_wloss,
-        # 'avg_rank_wloss': avg_wloss
     }
 
-    with open(out_file, 'w') as f:
+    vault_rankings = sorted(vault_rankings, key=lambda x: x['decoy_rank'])
+
+    with open('results/{}_rankings.json'.format(group), 'w') as f:
+        json.dump(vault_rankings, f)
+
+    with open('results/group_{}.json'.format(group), 'w') as f:
         json.dump(data, f)
