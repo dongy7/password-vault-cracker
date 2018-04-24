@@ -34,9 +34,13 @@ from vault_utils import *
 data = 'decoys'
 basedir = os.path.dirname(os.path.abspath(__file__))
 dataset = data + '_withcount.txt.bz2'
+# dataset = data + '-withcount.txt.bz2'
 num = '10'
 loss = '0.3978'
 val_loss = '1.5480'
+# num = '03'
+# loss = '0.5601'
+# val_loss = '0.9915'
 
 # decoys_L_3_H_320_epoch_10_loss_0.3978_val_loss_1.5480.hdf5
 
@@ -146,6 +150,19 @@ elif args['mode'] == 'eval':
         'c2i': c2i
     }
     eval_KL(group_size, params)
+elif args['mode'] == 'prep':
+    from preprocess import prep_vault
+    print('preprocessing decoy vault')
+    params = {
+        'model': model,
+        'SEQ_LENGTH': SEQ_LENGTH,
+        'GENERATE_LENGTH': GENERATE_LENGTH,
+        'VOCAB_SIZE': VOCAB_SIZE,
+        'i2c': i2c,
+        'c2i': c2i
+    }
+    prep_vault(params, 'data/decoy_vaults.txt', 'data/decoy_scores.json')
+    # prep_vault(params, 'data/decoy_vaults.txt', 'data/real_scores.json')
 
 # Else, performing generation
 else:

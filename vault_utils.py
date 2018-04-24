@@ -73,7 +73,7 @@ real: True if vault is not a decoy vault
 model: model parameters if using loss for KL divergence
 returns a dictionary containing the probability and occurence for each pw in vault
 """
-def get_dist(vault, real=False, model=None):
+def get_dist(vault, real=False, model=None, scores=None):
     dist = {}
     for pw in vault:
         if pw not in dist:
@@ -90,7 +90,10 @@ def get_dist(vault, real=False, model=None):
         for pw in dist:
             if len(pw) == 0:
                 raise Exception
-            dist[pw]['score'] = pw_loss_calc(model['model'], model['SEQ_LENGTH'], model['VOCAB_SIZE'], model['i2c'], model['c2i'], pw)
+            if scores and pw in scores:
+                dist[pw]['score'] = scores[pw]
+            else:
+                dist[pw]['score'] = pw_loss_calc(model['model'], model['SEQ_LENGTH'], model['VOCAB_SIZE'], model['i2c'], model['c2i'], pw)
 
     dist['___+ToTaL+___'] = {}
     dist['___+ToTaL+___']["sum"] = len(vault)
@@ -112,17 +115,22 @@ def rank(test_set):
 """
 group: size of password vaults one of [2-3, 4-8, 9-50]
 model: parameters for pw model specified if using loss from neural network
+decoy: True if using decoy trained model
 ranks the password vaults in a set of 1000 vaults
 """
-def eval_KL(group='2-3', model=None):
+def eval_KL(group='2-3', model=None, decoy=True):
     # reading vault data
     print('Ranking vaults of size: ' + group)
 
     out_file = 'results/group_{}.json'.format(group)
     vpath = 'data/vault.json'
+    score_src = 'data/decoy_scores.json' if decoy else 'data/real_scores.json'
 
     with open(vpath, 'r') as f:
         vault = json.load(f)
+
+    with open(score_src, 'r') as f:
+        scores = json.load(f)
 
     print('reading password vaults')
     vaults = sorted(
@@ -153,7 +161,7 @@ def eval_KL(group='2-3', model=None):
         j += 1
         print('Vault {}/{}'.format(j, len(dists)))
         decoys = construct_decoy_set(len(dist) - 2, d_vaults, 999)
-        decoy_dists = [get_dist(v, False, model) for v in decoys]
+        decoy_dists = [get_dist(v, False, model, scores) for v in decoys]
         test_set = [dist] + decoy_dists
 
         # compute score with and without loss
