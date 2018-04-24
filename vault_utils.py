@@ -70,10 +70,9 @@ def get_pw_dist(pw_file):
 """
 vault: list of passwords in vault
 real: True if vault is not a decoy vault
-combine: True if both real and decoy models should be evaulated and combined
 returns a dictionary containing the probability and occurence for each pw in vault
 """
-def get_dist(vault, real=False, decoy_model=True, decoy_scores=None, real_scores=None, combine=False):
+def get_dist(vault, real=False, decoy_scores=None, real_scores=None):
     dist = {}
     for pw in vault:
         if pw not in dist:
@@ -89,13 +88,10 @@ def get_dist(vault, real=False, decoy_model=True, decoy_scores=None, real_scores
     for pw in dist:
         if len(pw) == 0:
             raise Exception
-        # use precomputed score in dictionary
-        if combine:
-            dist[pw]['score'] = decoy_scores[pw] + real_scores[pw]
-        elif real:
-            dist[pw]['score'] = real_scores[pw]
-        else:
-            dist[pw]['score'] = decoy_scores[pw]
+        
+        dist[pw]['real_score'] = real_scores[pw]
+        dist[pw]['decoy_score'] = decoy_scores[pw]
+        dist[pw]['combined_score'] = decoy_scores[pw] + real_scores[pw]
         # all scores should be already precomputed
         # dist[pw]['score'] = pw_loss_calc(model['model'], model['SEQ_LENGTH'], model['VOCAB_SIZE'], model['i2c'], model['c2i'], pw)
 
@@ -124,28 +120,14 @@ model: parameters for pw model specified if using loss from neural network
 decoy: True if using decoy trained model
 ranks the password vaults in a set of 1000 vaults
 """
-def eval_KL(group='2-3', model=None, decoy=True, combined=False):
+def eval_KL(group='2-3', model=None):
     print('Ranking vaults of size: ' + group)
-    if model:
-        if combined:
-            print('Using both models')
-        elif decoy:
-            print('Using decoy model.')
-        else:
-            print('Using real model.')
 
     # reading precomputed password scores
     with open('data/decoy-scores.json', 'r') as f:
         decoy_scores = json.load(f)
     with open('data/real-scores.json', 'r') as f:
         real_scores = json.load(f)
-
-    if combined:
-        label = 'combined'
-    elif decoy:
-        label = 'decoy'
-    else:
-        label = 'real'
 
     # reading vault data
     with open('data/vault.json', 'r') as f:
@@ -161,18 +143,21 @@ def eval_KL(group='2-3', model=None, decoy=True, combined=False):
     # computing distribution for each vault in the group
     for vault in vaults:
         if len(vault) >= lo and len(vault) <= hi:
-            dists.append(get_dist(vault, True, decoy, decoy_scores, real_scores, combined))
+            dists.append(get_dist(vault, True, decoy_scores, real_scores))
 
     print('constructing decoy vaults')
     d_vaults = get_vaults('data/decoy_vaults.txt', 50)
 
     print('constructing probability distribution of decoys')
-    pw_dist = get_pw_dist('data/decoys_withcount.txt')
+    decoy_pw_dist = get_pw_dist('data/decoys_withcount.txt')
+    real_pw_dist = get_pw_dist('data/rockyou-withcount.txt')
 
     j = 0
     ranks = []
-    ranks_wloss = []
-    out_file = 'results/group_{}_{}.json'.format(group, label)
+    decoy_ranks = []
+    real_ranks = []
+    combined_ranks = []
+    out_file = 'results/group_{}.json'.format(group)
     print('Saving output to {}'.format(out_file))
 
     # for each real vault, rank it in a set of 1000 vaults containing 999 decoy vaults
@@ -180,38 +165,49 @@ def eval_KL(group='2-3', model=None, decoy=True, combined=False):
         j += 1
         print('Vault {}/{}'.format(j, len(dists)))
         decoys = construct_decoy_set(len(dist) - 2, d_vaults, 999)
-        decoy_dists = [get_dist(v, False, decoy, decoy_scores, real_scores, combined) for v in decoys]
+        decoy_dists = [get_dist(v, False, decoy_scores, real_scores) for v in decoys]
         test_set = [dist] + decoy_dists
 
         # compute score with and without loss
         for cv in test_set:
-            cv['___score___'] = calculate_divergence(cv, pw_dist)
-            cv['___score_with_loss___'] = calculate_divergence(cv, pw_dist, True)
+            cv['___score___'] = calculate_divergence(cv, decoy_pw_dist)
+            cv['___decoy_score___'] = calculate_divergence(cv, decoy_pw_dist, True, 'decoy_score')
+            cv['___real_score___'] = calculate_divergence(cv, decoy_pw_dist, True, 'real_score')
+            cv['___combined_score___'] = calculate_divergence(cv, decoy_pw_dist, True, 'combined_score')
 
         # sort by the score in descending order if using decoy model otherwise use ascending order
         sorted_set = sorted(
-            test_set, key=lambda x: x['___score___'], reverse=decoy)
-        sorted_loss_set = sorted(
-            test_set, key=lambda x: x['___score_with_loss___'], reverse=decoy)
+            test_set, key=lambda x: x['___score___'], reverse=True)
+        sorted_decoy_set = sorted(
+            test_set, key=lambda x: x['___decoy_score___'], reverse=True)
+        sorted_real_set = sorted(
+            test_set, key=lambda x: x['___real_score___'], reverse=False)
+        sorted_combined_set = sorted(
+            test_set, key=lambda x: x['___combined_score___'], reverse=True)
 
         # find the rank of the real vault
-        v_rank = rank(sorted_set)
-        v_rank_wloss = rank(sorted_loss_set)
+        # v_rank = rank(sorted_set)
+        # v_rank_wloss = rank(sorted_loss_set)
 
-        print("Rank: {},{}".format(v_rank, v_rank_wloss))
+        # print("Rank: {},{}".format(v_rank, v_rank_wloss))
 
         # append rank of real vault
-        ranks.append(v_rank)
-        ranks_wloss.append(v_rank_wloss)
+        ranks.append(rank(sorted_set))
+        decoy_ranks.append(rank(sorted_decoy_set))
+        real_ranks.append(rank(sorted_real_set))
+        combined_ranks.append(rank(sorted_combined_set))
 
     # find average rank across all real vaults
-    avg = sum(ranks) / len(ranks) / 1000 * 100
-    avg_wloss = sum(ranks_wloss) / len(ranks_wloss) / 1000 * 100
+    # avg = sum(ranks) / len(ranks) / 1000 * 100
+    # avg_wloss = sum(ranks_wloss) / len(ranks_wloss) / 1000 * 100
     data = {
-        'avg_rank': avg,
+        # 'avg_rank': avg,
         'ranks': ranks,
-        'ranks_wloss': ranks_wloss,
-        'avg_rank_wloss': avg_wloss
+        'decoy_ranks': decoy_ranks,
+        'real_ranks': real_ranks,
+        'combined_ranks': combined_ranks,
+        # 'ranks_wloss': ranks_wloss,
+        # 'avg_rank_wloss': avg_wloss
     }
 
     with open(out_file, 'w') as f:

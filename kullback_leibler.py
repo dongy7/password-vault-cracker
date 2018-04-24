@@ -23,14 +23,19 @@ def get_prob(distribution, password):
 #---
 # Calculate the Kullback-Leibler divergence (sum).
 # p0 and p1: distributions
+# loss: True if using model
+# score_key: name of key that contains score
 #---
-def calculate_divergence(p0, p1, loss=False):
+def calculate_divergence(p0, p1, loss=False, score_key=''):
+    def is_pw(pw):
+        reserved = ['___+ToTaL+___', '___real___', '___score___', '___decoy_score___', '___real_score___', 'combined_score___']
+        return not (pw in reserved)
     sum = 0.0
 
     for password in p0:
 
         # dont include the entry of total passwords
-        if (password != '___+ToTaL+___' and password != '___real___' and password != '___score___'):
+        if (is_pw(password)):
             divident = p0[password]['prob']
             divisor = get_prob(p1, password)
             factor = divident
@@ -60,7 +65,7 @@ def calculate_divergence(p0, p1, loss=False):
             # consider number of occurences
             for i in range(0, int(p0[password]["occ"])):
                 if loss:
-                    sum = sum + factor * math.log(division, 2) * p0[password]['score']
+                    sum = sum + factor * math.log(division, 2) * p0[password][score_key]
                 else:
                     sum = sum + factor * math.log(division, 2)
 

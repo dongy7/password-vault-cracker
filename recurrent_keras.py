@@ -160,7 +160,7 @@ elif args['mode'] == 'eval':
     # eval_KL(group_size, params, False)
 
     # combined model
-    eval_KL(group_size, params, True, True)
+    eval_KL(group_size, params)
 elif args['mode'] == 'prep':
     from preprocess import prep_vault
     print('preprocessing decoy vault')
