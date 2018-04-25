@@ -190,7 +190,7 @@ def eval_KL(group='2-3', model=None):
         sorted_decoy_set = sorted(
             test_set, key=lambda x: x['___decoy_score___'], reverse=True)
         sorted_real_set = sorted(
-            test_set, key=lambda x: x['___real_score___'], reverse=False)
+            test_set, key=lambda x: x['___real_score___'], reverse=True)
         sorted_combined_set = sorted(
             test_set, key=lambda x: x['___combined_score___'], reverse=True)
 
@@ -234,7 +234,7 @@ def eval_KL(group='2-3', model=None):
     vault_rankings = sorted(vault_rankings, key=lambda x: x['decoy_rank'])
 
     with open('results/{}_rankings.json'.format(group), 'w') as f:
-        json.dump(vault_rankings, f)
+        json.dump(vault_rankings, f, indent=4)
 
     with open('results/group_{}.json'.format(group), 'w') as f:
-        json.dump(data, f)
+        json.dump(data, f, indent=4)

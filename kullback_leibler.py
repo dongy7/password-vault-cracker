@@ -82,4 +82,5 @@ def calculate_divergence(p0, p1, loss=False, score_key=''):
             #print "divident: "+str(divident)
             #print "divisor: "+str(divisor)
 
-    return sum / p0['___+ToTaL+___']["sum"]
+    return sum
+    # return sum / p0['___+ToTaL+___']["sum"]
